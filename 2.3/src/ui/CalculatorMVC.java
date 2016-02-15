@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 
 import javax.swing.JApplet;
 
-import multiformat.Calculator;
+import multiformat.*;
 
 public class CalculatorMVC extends JApplet {
 
+	CalculatorListener handler = new CalculatorListener();
+	
 	public void init(){
 		Calculator calc = new Calculator();
 		
@@ -17,6 +19,8 @@ public class CalculatorMVC extends JApplet {
                             + calc.firstOperand() + ", "
                             + calc.secondOperand() + "]");
 		getContentPane().add(display,BorderLayout.CENTER);
+		
+		handler.addActionListener(display);
 		
 	}
 
