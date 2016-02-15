@@ -20,7 +20,9 @@ package multiformat;
 
 /**
  * Class representing a rational ('breuk').
+ * 
  * @author J.Baljé: Added comments
+ * @version 1.0
  */
 public class Rational {
 	static final double PRECISION=10;
@@ -31,8 +33,8 @@ public class Rational {
 
 	/**
 	 * Create a new Rational
-	 * @param num Numerator 
-	 * @param den Denominator 
+	 * @param double Numerator 
+	 * @param double Denominator 
 	 */
 	public Rational(double num, double den) {
 		numerator = num;
@@ -42,7 +44,11 @@ public class Rational {
 
 	public Rational() {
 	}
-
+	
+	/**
+	 * Create a new Rational
+	 * @param double number 
+	 */
 	public Rational(double number) {
 		numerator = number;
 		denominator = 1.0;
@@ -96,7 +102,7 @@ public class Rational {
 
 	/**
 	 * Add two rationals
-	 * @param other Another Rational to add to this.
+	 * @param Another Rational to add to this.
 	 * @return A new Rational representing the sum.
 	 */
 	public Rational plus(Rational other) {
@@ -111,7 +117,12 @@ public class Rational {
 										denominator * other.numerator
 								,denominator * other.denominator);
 	}
-
+	
+	/**
+	 * Subtract two rationals
+	 * @param Another Rational to subtractfrom this Rational.
+	 * @return A new Rational representing the subtraction.
+	 */
 	public Rational minus(Rational other) {
 		if (denominator == other.denominator)
 			return new Rational(numerator - other.numerator, denominator);
@@ -120,36 +131,67 @@ public class Rational {
 									denominator * other.numerator
 								,denominator * other.denominator);
 	}
-
+	
+	/**
+	 * Multiply two rationals
+	 * @param Another Rational to multiply with this Rational.
+	 * @return A new Rational representing the multiplication.
+	 */
 	public Rational mul(Rational other) {
 		return new Rational(
 			numerator * other.numerator,
 			denominator * other.denominator);
 	}
 
+	/**
+	 * Divide two rationals
+	 * @param Another Rational to divide this Rational with.
+	 * @return A new Rational representing the division.
+	 */
 	public Rational div(Rational other) {
 		return new Rational(
 			numerator * other.denominator,
 			denominator * other.numerator);
 	}
 
+	/**
+	 * Copy Another Rational's values on this Rational
+	 * @param Another Rational.
+	 */
 	public void copyOf(Rational other) {
 		this.numerator = other.numerator;
 		this.denominator = other.denominator;
 	}
 	
 	// Added getters and setters for unittesting purposes.
+	/**
+	 * Get the numerator of this Rational
+	 * @return (double) The numerator of this Rational
+	 */
 	public double getNumerator(){
 		return numerator;
 	}
 	
+	/**
+	 * Get the denominator of this Rational
+	 * @return (double) The denominator of this Rational
+	 */
 	public double getDenominator() {
 		return denominator;
 	}
+	
+	/**
+	 * Set the numerator of this Rational
+	 * @param A double you want to set the numerator to
+	 */
 	public void setNumerator(double num){
 		numerator = num;
 	}
 	
+	/**
+	 * Set the denominator of this Rational
+	 * @param A double you want to set the denominator to
+	 */
 	public void setDenominator(double den) {
 		denominator = den;
 	}
