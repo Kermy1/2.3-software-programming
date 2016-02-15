@@ -46,9 +46,18 @@ public class FloatingPointFormat extends Format {
     if(indexMul <= 0 || indexPow <= 0) {
       throw new FormatException("Error! Not a floating point format");
     }
-    double mantissa = base.parse(number.substring(0,indexMul));
-    double power = base.parse(number.substring(indexPow+1));
-    double value = mantissa*Math.pow(base.getBase(),power);
-    return new Rational(value);
+    double mantissa;
+	try {
+		mantissa = base.parse(number.substring(0,indexMul));
+		double power = base.parse(number.substring(indexPow+1));
+	    double value = mantissa*Math.pow(base.getBase(),power);
+	    return new Rational(value);
+	} catch (NumberBaseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return null;
+    
+    
   }
 }

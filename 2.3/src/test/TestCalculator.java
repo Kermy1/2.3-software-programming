@@ -30,19 +30,19 @@ public class TestCalculator extends TestCase {
 	public void testOperations(){
 	
 		Calculator calc = new Calculator();
-		
+		calc.setBase(new HexBase());
 		try{
-		calc.addOperand("3.2");
+		calc.addOperand("11.0");
 		assertEquals("0.0",calc.firstOperand());
-		assertEquals("3.2",calc.secondOperand());
+		assertEquals("11.0",calc.secondOperand());
 
-		calc.addOperand("2.8");
-		assertEquals("3.2",calc.firstOperand());
-		assertEquals("2.8",calc.secondOperand());
+		calc.addOperand("0");
+		assertEquals("11.0",calc.firstOperand());
+		assertEquals("0.0",calc.secondOperand());
 		
-		calc.add();
+		calc.divide();
 		assertEquals("0.0",calc.firstOperand());
-		assertEquals("6.0",calc.secondOperand());
+		assertEquals("11.0",calc.secondOperand());
 		}catch(FormatException e){
 			fail("Unexpected format exception");
 		}

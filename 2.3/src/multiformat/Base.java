@@ -44,8 +44,9 @@ public abstract class Base {
    * Takes the input string and calculates the double value, using the current numberbase. 
    * @param number A String representation like "101.101" or "1A3.E56".
    * @return The decimal double value of the number. 
+ * @throws NumberBaseException 
    */
-  double parse(String number) {
+  double parse(String number) throws NumberBaseException {
     // decodes the sign
     double sign = 1.0;
     if(number.charAt(0) == '-'){
@@ -71,6 +72,9 @@ public abstract class Base {
     // process the number. "101.101" is 4*1 + 2*0 + 1*1 + 1*0.5 + ...
     for(int i = 0; i < number.length(); i++)
       if(number.charAt(i)!='.'){
+    	  int temp = Character.getNumericValue(number.charAt(i));
+    	  if(temp > base){ throw new NumberBaseException("Number is larger than 7: Number = "+number.charAt(i));}
+    	  
         result += mult * digits.indexOf(number.charAt(i));
         mult /= base;
       }

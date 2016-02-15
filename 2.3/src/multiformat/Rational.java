@@ -128,6 +128,11 @@ public class Rational {
 	}
 
 	public Rational div(Rational other) {
+		if(other.denominator == 0 || other.numerator == 0
+				){ 
+			System.out.println("Can't divide by zero!");
+			Rational temp = plus(other); return temp;}
+		
 		return new Rational(
 			numerator * other.denominator,
 			denominator * other.numerator);

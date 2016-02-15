@@ -34,6 +34,12 @@ extends Format {
   }
 
   public Rational parse(String number, Base base) {
-    return new Rational(base.parse(number));
+    try {
+		return new Rational(base.parse(number));
+	} catch (NumberBaseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return null;
   }
 }
