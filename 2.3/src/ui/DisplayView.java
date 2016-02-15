@@ -9,36 +9,37 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import multiformat.Calculator;
+
 public class DisplayView extends JPanel implements ActionListener {
 	
-	private JTextField display = new JTextField();
-	private JLabel label = new JLabel();
 	
-	public DisplayView()
+	private JLabel label = new JLabel();
+	private Calculator calc;
+	
+	public DisplayView(Calculator calc)
 	{
 	    this.setLayout(new FlowLayout());
-	    
-	    Dimension temp = getPreferredSize();
-	    display.setPreferredSize(temp);
-	    
+	    this.calc = calc;
 	    this.add(label);
-	    this.add(display);
-	    display.addActionListener(this);
+	    
 	}
 	
-	public Dimension getPreferredSize()
-	{
-	    return new Dimension(200,30);
-	} 
+	
 	
 	public void setText(String text)
 	{
 		label.setText(text);
 	}
 
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(display.getText());
-		
+		label.setText("["+calc.getBase().getName()+","
+                + calc.getFormat().getName()+","
+                + calc.firstOperand() + ", "
+                + calc.secondOperand() + "]");
 	}
+
 }
