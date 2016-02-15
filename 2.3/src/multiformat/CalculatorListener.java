@@ -31,6 +31,7 @@ public class CalculatorListener {
 	      else if(command.equals("dec")) calc.setBase(new DecimalBase());
 	      else if(command.equals("bin")) calc.setBase(new BinaryBase());
 	      else if(command.equals("hex")) calc.setBase(new HexBase());
+	      else if(command.equals("oct")) calc.setBase(new OctaalBase());
 	      else if(command.equals("rat")) calc.setFormat(new RationalFormat());
 	      else if(command.equals("fixed")) calc.setFormat(new FixedPointFormat());
 	      else if(command.equals("float")) calc.setFormat(new FloatingPointFormat());
