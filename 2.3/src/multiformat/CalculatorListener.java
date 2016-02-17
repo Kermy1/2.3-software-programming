@@ -11,6 +11,7 @@ public class CalculatorListener {
 	
 	private ArrayList<ActionListener> actionListenerList = new ArrayList<ActionListener>();
 	private Calculator calc;
+	private ActionListener calculationView;
 	
 	public CalculatorListener(Calculator calc){
 		this.calc = calc;
@@ -20,14 +21,19 @@ public class CalculatorListener {
 		actionListenerList.add( l );
 	}
 	
+	public void addCalculationListener(ActionListener li)
+	{
+		calculationView = li;
+	}
+	
 	public void perform(String text){
 		
 		String command = text;
 		
-		if(command.equals("+")) calc.add();
-	      else if(command.equals("-")) calc.subtract();
-	      else if(command.equals("*")) calc.multiply();
-	      else if(command.equals("/")) calc.divide();
+		if(command.equals("+")) {calc.add(); CalculationEvent(new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));}
+	      else if(command.equals("-")) {calc.subtract();CalculationEvent(new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));}
+	      else if(command.equals("*")) {calc.multiply(); CalculationEvent(new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));}
+	      else if(command.equals("/")) {calc.divide();CalculationEvent(new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null));}
 	      else if(command.equals("dec")) calc.setBase(new DecimalBase());
 	      else if(command.equals("bin")) calc.setBase(new BinaryBase());
 	      else if(command.equals("hex")) calc.setBase(new HexBase());
@@ -59,5 +65,9 @@ public class CalculatorListener {
 		// Je kunt ook een for-lus of een iterator gebruiken, maar foreach is het elegantste.
 		for( ActionListener l : actionListenerList)
 			l.actionPerformed( e );
+	}
+	
+	private void CalculationEvent(ActionEvent e){
+		calculationView.actionPerformed(e);
 	}
 }

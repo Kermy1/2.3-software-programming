@@ -73,7 +73,7 @@ public abstract class Base {
     for(int i = 0; i < number.length(); i++)
       if(number.charAt(i)!='.'){
     	  int temp = Character.getNumericValue(number.charAt(i));
-    	  if(temp > base){ throw new NumberBaseException("Number is larger than 7: Number = "+number.charAt(i));}
+    	  if(temp >= base){ throw new NumberBaseException("Number is larger or equal than "+base+": Number = "+number.charAt(i));}
     	  
         result += mult * digits.indexOf(number.charAt(i));
         mult /= base;

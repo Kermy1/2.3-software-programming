@@ -23,15 +23,17 @@ public class CalculatorMVC extends JApplet {
                             + calc.firstOperand() + ", "
                             + calc.secondOperand() + "]");
 		
+		CalculatorStatView stats = new CalculatorStatView();
+		
 		handler = new CalculatorListener(calc);
 		
         getContentPane().add(controller  = new CalculatorController(handler),BorderLayout.CENTER);
-		
-		
+		getContentPane().add(stats,BorderLayout.SOUTH);
 		getContentPane().add(display,BorderLayout.NORTH);
 		
 		
 		handler.addActionListener(display);
+		handler.addCalculationListener(stats);
 		
 	}
 
