@@ -39,8 +39,6 @@ public class Calculator {
 
   public void add(){
 	  if(rationalStack.size()>=2){
-		operand_0 = operand_1.plus(operand_0);
-	  	operand_1 = new Rational();
 	  	Rational returnRational = rationalStack.firstElement();
 	  	rationalStack.remove(0);
 		for(Rational operand: rationalStack){
@@ -54,8 +52,6 @@ public class Calculator {
   }
   public void subtract() {
     if(rationalStack.size()>=2){
-		operand_0 = operand_1.plus(operand_0);
-	  	operand_1 = new Rational();
 	  	Rational returnRational = rationalStack.firstElement();
 	  	rationalStack.remove(0);
 		for(Rational operand: rationalStack){
@@ -69,8 +65,6 @@ public class Calculator {
   }
   public void multiply() {
     if(rationalStack.size()>=2){
-		operand_0 = operand_1.plus(operand_0);
-	  	operand_1 = new Rational();
 	  	Rational returnRational = rationalStack.firstElement();
 	  	rationalStack.remove(0);
 		for(Rational operand: rationalStack){
@@ -84,8 +78,6 @@ public class Calculator {
   }
   public void divide() {
     if(rationalStack.size()>=2){
-		operand_0 = operand_1.plus(operand_0);
-	  	operand_1 = new Rational();
 	  	Rational returnRational = rationalStack.firstElement();
 	  	rationalStack.remove(0);
 		for(Rational operand: rationalStack){
