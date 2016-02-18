@@ -18,12 +18,15 @@
  */
 package multiformat;
 
+import java.util.Stack;
+
 /**
  * The multiformat calculator
  */
 public class Calculator {
   private Rational operand_0 = new Rational();
   private Rational operand_1 = new Rational();
+  private Stack<Rational> rationalStack = new Stack<Rational>();
   
   // The current format of the calculator
   private Format format = new FixedPointFormat();
@@ -31,29 +34,71 @@ public class Calculator {
   private Base base = new DecimalBase();
 
   public void addOperand(String newOperand) throws FormatException {
-	  operand_1 = operand_0;
-      operand_0 = format.parse(newOperand, base);
+      rationalStack.push(format.parse(newOperand, base));
   }
 
   public void add(){
-    operand_0 = operand_1.plus(operand_0);
-    operand_1 = new Rational();
+	  if(rationalStack.size()>=2){
+		operand_0 = operand_1.plus(operand_0);
+	  	operand_1 = new Rational();
+	  	Rational returnRational = rationalStack.firstElement();
+	  	rationalStack.remove(0);
+		for(Rational operand: rationalStack){
+			returnRational = returnRational.plus(operand);
+		}
+		rationalStack.clear();
+	    rationalStack.push(returnRational);
+  	}else{
+  		System.out.println("Error: not enough operands are entered");
+  	}
   }
   public void subtract() {
-    operand_0 = operand_1.minus(operand_0);
-    operand_1 = new Rational();
+    if(rationalStack.size()>=2){
+		operand_0 = operand_1.plus(operand_0);
+	  	operand_1 = new Rational();
+	  	Rational returnRational = rationalStack.firstElement();
+	  	rationalStack.remove(0);
+		for(Rational operand: rationalStack){
+			returnRational = returnRational.minus(operand);
+		}
+		rationalStack.clear();
+	    rationalStack.push(returnRational);
+  	}else{
+  		System.out.println("Error: not enough operands are entered");
+  	}
   }
   public void multiply() {
-    operand_0 = operand_1.mul(operand_0);
-    operand_1 = new Rational();
+    if(rationalStack.size()>=2){
+		operand_0 = operand_1.plus(operand_0);
+	  	operand_1 = new Rational();
+	  	Rational returnRational = rationalStack.firstElement();
+	  	rationalStack.remove(0);
+		for(Rational operand: rationalStack){
+			returnRational = returnRational.mul(operand);
+		}
+		rationalStack.clear();
+	    rationalStack.push(returnRational);
+  	}else{
+  		System.out.println("Error: no operands entered");
+  	}
   }
   public void divide() {
-    operand_0 = operand_1.div(operand_0);
-    operand_1 = new Rational();
+    if(rationalStack.size()>=2){
+		operand_0 = operand_1.plus(operand_0);
+	  	operand_1 = new Rational();
+	  	Rational returnRational = rationalStack.firstElement();
+	  	rationalStack.remove(0);
+		for(Rational operand: rationalStack){
+			returnRational = returnRational.div(operand);
+		}
+		rationalStack.clear();
+	    rationalStack.push(returnRational);
+  	}else{
+  		System.out.println("Error: not enough operands are entered");
+  	}
   }
   public void delete() {
-    operand_0 = operand_1;
-    operand_1 = new Rational();
+    rationalStack.pop();
   }
 
   public String firstOperand(){
@@ -61,6 +106,20 @@ public class Calculator {
   }
   public String secondOperand(){
     return format.toString(operand_0,base);
+  }
+  /**
+   * Gets a string of all operands that are stored in the stack seperated by a comma.
+   * @return A String of all operands seperated by a comma.
+   */
+  public String getOperandsString(){
+	  String returnString = "";
+	  for(Rational operand: rationalStack){
+		  returnString = returnString+format.toString(operand,base)+", ";
+	  }
+	  if(rationalStack.size()>0){
+		  returnString = returnString.substring(0,returnString.length()-2);
+	  }
+	  return returnString;
   }
 
   public void setBase(Base newBase){

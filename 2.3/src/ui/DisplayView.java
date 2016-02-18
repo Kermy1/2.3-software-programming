@@ -36,10 +36,8 @@ public class DisplayView extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		label.setText("["+calc.getBase().getName()+","
-                + calc.getFormat().getName()+","
-                + calc.firstOperand() + ", "
-                + calc.secondOperand() + "]");
+		String labelText = "["+calc.getBase().getName()+","+calc.getFormat().getName()+","+calc.getOperandsString()+"]";
+		label.setText(labelText);
 	}
 
 }
