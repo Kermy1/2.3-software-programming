@@ -86,7 +86,7 @@ public class BinaryTree {
 				current = current.leftChild;
 			}else{
 				Node parent = nodeStack.pop();
-				if(current.secondPop){
+				if(parent.secondPop){
 					// zelf aanvullen, 2 regels
 					current = nodeStack.pop();
 					System.out.println(parent.toString());
@@ -94,6 +94,7 @@ public class BinaryTree {
 					// zelf aanvullen, 3 regels
 					parent.secondPop = true;
 					current = parent.rightChild;
+					nodeStack.push(parent);
 				}
 			}
 		}

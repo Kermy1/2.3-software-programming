@@ -15,7 +15,7 @@ public class Main {
 		tree.addNode(25, "node 25");
 		tree.addNode(75, "node 75");
 		tree.addNode(1, "node 1");
-		tree.preOrderTraverse();
+		tree.postOrderTraverse();
 	}
 	
 
