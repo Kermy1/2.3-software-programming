@@ -34,6 +34,7 @@ public class Calculator {
   private Base base = new DecimalBase();
 
   public void addOperand(String newOperand) throws FormatException {
+	  if(newOperand.contains("x")){}
       rationalStack.push(format.parse(newOperand, base));
   }
 

@@ -30,6 +30,7 @@ public class Rational {
 	
 	double numerator = 0.0; // teller
 	double denominator = 1.0; // noemer
+	boolean hasX;
 
 	/**
 	 * Create a new Rational
@@ -40,9 +41,21 @@ public class Rational {
 		numerator = num;
 		denominator = den;
 		simplify();
+		hasX = false;
 	}
 
 	public Rational() {
+		hasX = false;
+	}
+	
+	public void setX(boolean x)
+	{
+		this.hasX = x;
+	}
+	
+	public boolean hasX()
+	{
+		return hasX;
 	}
 	
 	/**
@@ -54,6 +67,7 @@ public class Rational {
 		denominator = 1.0;
 		canonical();
 		simplify();
+		hasX = false;
 	}
 
 	/**

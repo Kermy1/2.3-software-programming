@@ -71,14 +71,16 @@ public abstract class Base {
     double mult = Math.pow(base,power);
     // process the number. "101.101" is 4*1 + 2*0 + 1*1 + 1*0.5 + ...
     for(int i = 0; i < number.length(); i++)
-      if(number.charAt(i)!='.'){
+      if(number.charAt(i)!='.' && number.charAt(i) != 'x'){
     	  int temp = Character.getNumericValue(number.charAt(i));
     	  if(temp >= base){ throw new NumberBaseException("Number is larger or equal than "+base+": Number = "+number.charAt(i));}
     	  
         result += mult * digits.indexOf(number.charAt(i));
         mult /= base;
       }
-    return result * sign;
+    double temp = result * sign;
+    
+    return temp;
   }
 
   /**
