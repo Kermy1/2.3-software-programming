@@ -1,5 +1,7 @@
 package leertaak_2;
 
+import java.util.Stack;
+
 public class BinaryTree {
 	
 	Node root;
@@ -30,7 +32,11 @@ public class BinaryTree {
 				if(key < focusNode.key)
 				{
 					focusNode = focusNode.leftChild;
-					return;
+					
+					if(focusNode == null){
+						parent.leftChild = newNode;
+						return;
+					}
 				} else {
 					focusNode = focusNode.rightChild;
 					
@@ -43,8 +49,55 @@ public class BinaryTree {
 			}
 		}
 	}
-	
-	
+	public void inOrderTraverse(){
+		Node current = root; // Begin bij de root
+		Stack<Node> nodeStack = new Stack<Node>();
+		while(current != null || !nodeStack.isEmpty()){
+			if(current != null){
+				nodeStack.push(current);
+				current = current.leftChild;
+			}else{
+				Node parent = nodeStack.pop();
+				System.out.println(parent.toString());
+				current = parent.rightChild;
+			}
+		}
+	}
+	public void preOrderTraverse(){
+		Node current = root; // Begin bij de root
+		Stack<Node> nodeStack = new Stack<Node>();
+		while(current != null || !nodeStack.isEmpty()){
+			if(current != null){
+				nodeStack.push(current);
+				System.out.println(current.toString());
+				current = current.leftChild;
+			}else{
+				Node parent = nodeStack.pop();
+				current = parent.rightChild;
+			}
+		}
+	}
+	public void postOrderTraverse(){
+		Node current = root; // Begin bij de root
+		Stack<Node> nodeStack = new Stack<Node>();
+		while(current != null || !nodeStack.isEmpty()){
+			if(current != null){
+				nodeStack.push(current);
+				current = current.leftChild;
+			}else{
+				Node parent = nodeStack.pop();
+				if(current.secondPop){
+					// zelf aanvullen, 2 regels
+					current = nodeStack.pop();
+					System.out.println(parent.toString());
+				}else{
+					// zelf aanvullen, 3 regels
+					parent.secondPop = true;
+					current = parent.rightChild;
+				}
+			}
+		}
+	}
 	
 }
 
@@ -66,7 +119,7 @@ class Node {
 	 */
 	Node leftChild;
 	Node rightChild;
-	
+	boolean secondPop;
 	/**
 	 * creates a new Node object and initiates the key variable and the name variable.
 	 * @param key
@@ -74,8 +127,7 @@ class Node {
 	 * @see #key
 	 * @see #name
 	 */
-	public Node(int key,String name)
-	{
+	public Node(int key,String name){
 		this.key = key;
 		this.name = name;
 	}
@@ -83,8 +135,7 @@ class Node {
 	/**
 	 * Makes a string of the information of this node.
 	 */
-	public String toString()
-	{
-		return name + "has the key: "+key;
+	public String toString(){
+		return name + " has the key: "+key;
 	}
 }
