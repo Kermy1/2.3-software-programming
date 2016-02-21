@@ -17,8 +17,8 @@ public class Main {
 		tree.addNode(9, "H");
 		tree.addNode(2, "B");
 		tree.addNode(1, "A");
-		tree.addNode(3, "D");
-		tree.addNode(4, "C");
+		tree.addNode(4, "D");
+		tree.addNode(3, "C");
 		tree.addNode(5, "E");
 		tree.postOrderTraverse();
 	}

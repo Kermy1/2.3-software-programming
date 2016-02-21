@@ -87,7 +87,6 @@ public class BinaryTree {
 			}else{
 				Node parent = nodeStack.pop();
 				if(parent.secondPop){
-					//
 					System.out.println(parent.toString());
 				}else{
 					parent.secondPop = true;
