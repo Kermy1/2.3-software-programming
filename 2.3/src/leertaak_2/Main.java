@@ -11,10 +11,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		BinaryTree tree = new BinaryTree();
-		tree.addNode(50, "node 50");
-		tree.addNode(25, "node 25");
-		tree.addNode(75, "node 75");
-		tree.addNode(1, "node 1");
+		tree.addNode(6, "F");
+		tree.addNode(7, "G");
+		tree.addNode(8, "I");
+		tree.addNode(9, "H");
+		tree.addNode(2, "B");
+		tree.addNode(1, "A");
+		tree.addNode(3, "D");
+		tree.addNode(4, "C");
+		tree.addNode(5, "E");
 		tree.postOrderTraverse();
 	}
 	
