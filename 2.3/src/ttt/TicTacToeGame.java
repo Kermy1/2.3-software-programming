@@ -63,7 +63,7 @@ class TicTacToe
 		int simpleEval;       // Result of an immediate evaluation
 		int bestRow = 0;
 		int bestColumn = 0;
-		int value = Integer.MIN_VALUE;
+		int value;
 
 		if((simpleEval = positionValue()) != UNCLEAR){
 			return new Best(simpleEval);
@@ -71,8 +71,11 @@ class TicTacToe
 
 		if(side==COMPUTER){
 			opp = HUMAN;
+			value = Integer.MIN_VALUE;
+			
 		}else{
 			opp = COMPUTER;
+			value = Integer.MAX_VALUE;
 		}
 		for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
@@ -80,15 +83,24 @@ class TicTacToe
                     TicTacToe copy = this.copy();
                     copy.place(i, j, side);
                     reply = copy.chooseMove(opp);
-                    if(value < -reply.val){
-                        value = -reply.val;
-                        bestRow = i;
-                        bestColumn = j;
+                    if(side==COMPUTER){
+                    	if(value < reply.val){
+                            value = reply.val;
+                            bestRow = i;
+                            bestColumn = j;
+                        }
+                    }
+                    if(side==HUMAN){
+                    	if(value > reply.val){
+                            value = reply.val;
+                            bestRow = i;
+                            bestColumn = j;
+                        }
                     }
                 }
             }
         }
-		System.out.println(side+": "+value+" "+bestRow+","+bestColumn);
+		//System.out.println(side+": "+value+" "+bestRow+","+bestColumn);
 	    return new Best(value, bestRow, bestColumn);
     }
 	private TicTacToe copy(){
@@ -122,7 +134,7 @@ class TicTacToe
 
 
 	// Simple supporting routines
-	private void clearBoard()
+	public void clearBoard()
 	{
 		for(int i=0; i<3; i++){
 			for(int j=0; j<3; j++){				
